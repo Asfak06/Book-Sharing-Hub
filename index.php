@@ -24,13 +24,7 @@
          }
          .head{
             width:600px;
-         }
-         .login{                  
-            text-align: center;   
-            float:left;   
-            margin-left:270px;
-            margin-top:50px;     
-         }
+         }         
          .login h1{
             text-align: center;
             color:black ;
@@ -56,11 +50,7 @@
             background-color:#b2bec3;
             color:black;
          }
-         .reg{
-            float: left;
-            margin-left:30px;
-            margin-top:50px;
-         }
+        
          .reg h1{
             text-align:center;
             color:black;
@@ -80,8 +70,7 @@
          }
          .reg form select{
              margin:auto;
-         }
-
+         }	 
 	</style>
 </head>
 
@@ -91,7 +80,8 @@
 		<h1 id="title" >Unversity <br> Book Sharing Hub</h1>
 		<img src="handbook.png" alt="" id="img1">
 	</div>
-   <div class="login" >
+   <div class="row">
+   <div class="login col-sm-12 col-md-6 mt-5" >
             <h1>log in</h1>
             <hr>
                 <form action="<?php echo $_SERVER['PHP_SELF']?>" method="POST" >
@@ -109,10 +99,10 @@
                 </form>                                
          <br>
    </div>
-   <div class="reg">
+   <div class="reg col-sm-12 col-md-6 mt-5 ">
       <h1 style="">Ragistration</h1>
          <hr>
-         <form action=""method="POST" enctype="multipart/form-data">                     
+         <form action=" "method="POST" enctype="multipart/form-data">                     
                        <div class="form-group">
                        <label for="">User Name</label>
                        <input type="text" name="uname" class="form-control w-75">
@@ -164,7 +154,7 @@
                        </div>        
          </form>                       
    </div>
- </div>
- 
+  </div>
+ </div> 
 </body>
 </html>
