@@ -1,80 +1,31 @@
+<?php
+include "libs/function.php";
+$boi=new BookShare;
+if( !empty($_SESSION['user_name']) AND !empty($_SESSION['user_img']) ){
+    header("location:pages/homepage.php");
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title> log in or sign up</title>
+	  <meta charset="UTF-8">
+	  <title> log in or sign up</title>
     <link rel="stylesheet" href="css/font-awesome.min.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
-	<style>
-   	   #bod{
-   		 	background-color: #2c3e50;
-   		}
-         #title{
-         	font-weight: bold;        	 
-         	font-size: 40px;
-         	color:#d35400;
-         	margin-top:70px;
-         	float:left;
-         }
-         #img1{
-         	height: 20%;
-         	width: 20%;
-            margin-left: 60px;
-         	margin-top: 50px;
-         }
-         .head{
-            width:600px;
-         }         
-         .login h1{
-            text-align: center;
-            color:black ;
-         }
-         .login hr{
-            border:1px solid #d35400;
-            width: 300px;
-         }
-         .login form{
-            width:300px;
-            text-align: center;
-            margin: auto;          
-         }
-         .login form label{
-            color:lightblue;
-         }
-         .login form input{
-            color:lightblue;
-            width: 200px;
-            margin:auto;
-         }
-         #in{
-            background-color:#b2bec3;
-            color:black;
-         }
-        
-         .reg h1{
-            text-align:center;
-            color:black;
-         }
-         .reg hr{
-            border:1px solid #d35400;
-            width: 300px;
-         }
-         .reg form{
-            margin:auto;
-            text-align:center;
-            width:450px;
-            color:lightblue;
-         }
-         .reg form input{
-            margin:auto;
-         }
-         .reg form select{
-             margin:auto;
-         }	 
-	</style>
+    <link rel="stylesheet" href="index.css">
 </head>
-
 <body id="bod">
+  <?php
+        if(isset($_POST['sublog'])){
+        $uname=$_POST['uname'];
+        $upass=$_POST['upass'];               
+        if(empty($uname)||empty($upass)){
+                      $massage=" <h1 style='color:red;text-align:center;'>email or password must not be empty</h1>";
+                      }else{
+                      $massage= $boi->userLogin($uname,$upass);
+                      }
+          }
+        ?> 
  <div class="container-fluid p-0">   
 	<div class="head m-auto">
 		<h1 id="title" >Unversity <br> Book Sharing Hub</h1>
@@ -99,6 +50,37 @@
                 </form>                                
          <br>
    </div>
+   <?php
+         if(isset($_POST['sub'])){         
+         $name=$_POST['uname'];            
+         $ce=$_POST['ce'];              
+         $pass=$_POST['npo'];
+         $sel=$_POST['sel'];
+         $ses=$_POST['ses'];
+         $roll=$_POST['roll'];
+         $img=$_FILES['img']['name']; 
+         $timg=$_FILES['img']['tmp_name'];
+         $imgname=explode('.',$img);
+         $imgx=end($imgname);
+         $uimg=md5(time().$img).'.'.$imgx; 
+                  
+          if(empty($name)||empty($ce)||empty($pass)||empty($img)){
+                              $massage=" <h1 style='color:red;text-align:center;'>field must not be empty </h1>";
+                              }
+                              elseif(in_array($imgx,['jpeg','png','jpg','gif'])==false){
+                                echo"<h1 style='color:red;text-align:center;'>invalid image format</h1>";
+                              }else{
+                              $data=$fb->userRegistration($name,$ce,$pass,$sel,$ses,$roll,$uimg,$timg);
+                                $massage=$data;
+                              }   
+                          }        
+
+    ?>
+    <?php
+      if(isset($massage)){
+        echo $massage;
+      }
+    ?>
    <div class="reg col-sm-12 col-md-6 mt-5 ">
       <h1 style="">Ragistration</h1>
          <hr>
