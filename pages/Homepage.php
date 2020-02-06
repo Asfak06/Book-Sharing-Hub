@@ -17,8 +17,16 @@ if(empty($_SESSION['user_name']) AND empty($_SESSION['user_img'])){
     <link rel="stylesheet" href="homepage.css">
 </head>
 <style>
+		.left-area{
+			margin-left:50px;
+			margin-top:95px;
+			margin-right:0px;
+			padding-right:0px;
+			color:#2ecc71 ;
+			width: 350px;
+		}
 		.card img{
-		  width:100%;
+		  width:auto;
 		  height:200px;
 		}
 </style>
@@ -77,16 +85,15 @@ if(empty($_SESSION['user_name']) AND empty($_SESSION['user_img'])){
 	             </div>
 	             <div class="col-md-8">
 	             	<div class="row">
-	             		<h3 class="h3 text-light pl-3">Showing Shared books</h3> 
+	             		<h3 class="h3 text-light pl-3 mb-0">Showing Shared books</h3> 
 	             	</div>
-	             	<div class="row">
-	             	  
+	                <div class="row">
 <?php
 $post=$boi->recPost();
-$j=1; 
 while ($row=$post->fetch_assoc()):
-?>	             		    <div class="col-md-4">              	        			             							   <div class="card">
-	                            <div class="card-header">
+?>
+	             		    <div class="col-lg-4">              	        			             	<div class="card mt-4">
+	                            <div class="card-header pb-0">
 	                            <p class="float-left"><?php echo $row['post_author'];?></p>
 							    <p class="text-right"><?php echo $row['post_date'];?></p>
 	                            </div>
@@ -95,19 +102,17 @@ while ($row=$post->fetch_assoc()):
 							    </div>
 							    <div class="card-inner">
 								    <div class="header">
-								        <h5><a href="star/bookdatail.php?postar=<?php echo $row['bookname']; ?>"><?php echo $row['bookname'];?></a></h5>
-								        
+								        <h5 class="text-center"><a class="text-dark" href="star/bookdatail.php?postar=<?php echo $row['bookname']; ?>"><?php echo $row['bookname'];?></a></h5>	
+								        <p class="text-center text-secondary"><?php echo $row['authorname'];?></p>
 								    </div>
-								    <div class="content">
-								      <input id="in" type="submit" class="btn btn-block alert-secondary  w-25 m-auto" value="book">
-								    </div>
-							    </div>
-						      </div>
-						    </div>						
-<?php endwhile; ?>
-                        
-	             	</div>
+								    	
+								</div>	
+					           </div>
+  				           </div>	
+<?php endwhile; ?>			    
+	             	</div>	
 	             </div>
 	           </div>
              </div>
+
 </body>
