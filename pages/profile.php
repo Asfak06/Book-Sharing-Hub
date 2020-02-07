@@ -133,7 +133,7 @@ $row=$post->fetch_assoc();
 			<div class="container-fluid p-0">
 			<div class="row">
 			<div class="col-md-3">
-			<div class="left-area class bg-light p-5  ">
+			<div class="left-area bg-light p-5  ">
 			<div class="user p-2">
 			<img src="../profile/<?php echo $row['post_author_img']; ?>" alt="">
 			<a class="text-dark ml-3" href="profile.php?posta=<?php echo $row['post_author']; ?>">
@@ -152,13 +152,19 @@ $row=$post->fetch_assoc();
 			</div>
 			<div class="col-md-8 mt-5 ml-5">
 	             	<div id="head" class="row">
+	             		<?php 
+	             		$name=$_SESSION['user_name'];
+                           if ($post_pro==$name) {
+                                echo "<p class='pl-3 mb-0 mt-5 col-12'><a class='text-light' href='add.php'>Add a  book</a><p>";
+                           }
+	             		?>
 	             		<h3 class="h3 text-light pl-3 mb-0 col-12">Showing <?php echo $row['post_author'];?>'s Shared books</h3> 
 	             	</div>
 	             	<div id="bod" class="row ">
 <?php
-$post=$boi->recPost();
-$i=1; 
-$j=1; 
+$i=1;
+$post_pro=$_GET["posta"];
+$post=$boi->recPosts($post_pro);
 while ($row=$post->fetch_assoc()):
 ?>              
                 

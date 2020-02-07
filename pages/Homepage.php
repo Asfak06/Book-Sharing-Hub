@@ -94,7 +94,7 @@ while ($row=$post->fetch_assoc()):
 ?>
 	             		    <div class="col-lg-4">              	        			             	<div class="card mt-4">
 	                            <div class="card-header pb-0">
-	                            <p class="float-left"><?php echo $row['post_author'];?></p>
+	                            <p class="float-left"><a href="profile.php?posta=<?php echo $row['post_author'];?>"><?php  echo $row['post_author'] ;?></a></p>
 							    <p class="text-right"><?php echo $row['post_date'];?></p>
 	                            </div>
 							    <div class="image m-auto">
