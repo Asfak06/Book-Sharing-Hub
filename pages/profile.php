@@ -177,7 +177,7 @@ while ($row=$post->fetch_assoc()):
 				<img src="../images/<?php echo $row['post_img'];?>" alt="">
 				</div>	
 				<div class="card-footer text-center p-0">
-				<a href="star/bookdatail.php?postar=<?php echo $row['bookname']; ?>"><?php echo $row['bookname'];?></a>
+				<a href="star/bookdatail.php?postar=<?php echo $row['post_id']; ?>"><?php echo $row['bookname'];?></a>
 				</div>
 		        </div>
 		         <div class="post-comments">
@@ -200,7 +200,7 @@ while($aaa=$shh->fetch_assoc()):
 $book_show=$row['post_id'];
 $bal=$boi->showBooked($book_show);
 if ($bal==0) {
-include "button.php";
+echo '<p style="width:600px; height:25px; margin-bottom:0px;" class="alert-secondary text-center">No one booked this book yet</p>' ;
 }
 ?>                                                
                    <div class="post-comments">

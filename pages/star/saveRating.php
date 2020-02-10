@@ -1,8 +1,8 @@
 <?php
-  include "../libs/function.php";
-  $fb=new FBsoft;
-  if(empty($_SESSION['user_name']) AND empty($_SESSION['user_img'])){
-    header("location:../index.php");
+include "../../libs/function.php";
+$boi=new BookShare;
+if(empty($_SESSION['user_name']) AND empty($_SESSION['user_img'])){
+    header("location:../../index.php");
   }
 ?>
 <?php

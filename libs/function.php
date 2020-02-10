@@ -49,7 +49,7 @@ class BookShare{
             return $data;
         }
         public function bookPost($book_pro){
-          $data=$this->connection->query("SELECT * FROM posts WHERE bookname='$book_pro' ");
+          $data=$this->connection->query("SELECT * FROM posts WHERE post_id='$book_pro' ");
             return $data;
         }
         public function recPosts($post_pro){

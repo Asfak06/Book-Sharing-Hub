@@ -24,13 +24,10 @@ if(empty($_SESSION['user_name']) AND empty($_SESSION['user_img'])){
     }
     a{
       text-decoration: none;
-      color:#000;
+      color:black;
     }
     ul, ol{
       list-style:none;
-    }
-    body{
-      background-color:#2c3e50;
     }
     .top-bar ul {
       text-align: right;
@@ -67,9 +64,9 @@ if(empty($_SESSION['user_name']) AND empty($_SESSION['user_img'])){
             <div class="top-bar">
             <div class="container">
             <ul>
-            <li><a href="../homepage.php">Home</a></li>
-            <li><a href="../../libs/Logout.php">log OUT</a></li>
-            <li><a href="../profile.php?posta=<?php echo $_SESSION['user_name'];?>"><?php  echo $_SESSION['user_name'] ; ?></a>
+            <li><a class="text-dark" href="../homepage.php">Home</a></li>
+            <li><a class="text-dark" href="../../libs/Logout.php">log OUT</a></li>
+            <li><a class="text-dark" href="../profile.php?posta=<?php echo $_SESSION['user_name'];?>"><?php  echo $_SESSION['user_name'] ; ?></a>
             </li>                  
             <li><img src="../../profile/<?php echo  $_SESSION['user_img']; ?>" alt=""></li>
             </ul>
@@ -89,6 +86,34 @@ $name=$row['bookname'];
             <div class="alert alert-dark">
             <h4 class="card-title text-dark"><?php echo $row['bookname'] ?></h4>
             <h4 class="card-title text-secondary"><?php echo $row['authorname'] ?></h4>
+            </div>
+            
+            <div class="post-comments">
+<?php
+$book_show=$book_pro;
+$shh=$boi->showBook($book_show);
+$aaa=$shh->fetch_assoc();
+?>     
+            <div class="card" style="">
+            <div class="book alert-secondary ">
+            <a class="text-primary" href="../profile.php?posta=<?php echo $aaa['book_author']; ?>"><?php echo $aaa['book_author']; ?></a>
+            <span class="text-secondary"><?php echo $aaa['book_content']; ?></span>
+            </div>
+            </div>
+<?php
+$bal=$boi->showBooked($book_show);
+if ($bal==0) {
+include "../button.php";
+$non='pub';
+if (isset($_POST[$non])){
+$comment="booked this.";
+$comment_author=$_SESSION['user_name'];
+$comment_author_img=$_SESSION['user_img'];
+$post_id=$_POST['npo'];
+$boi->newBook($comment_author,$comment_author_img,$comment,$post_id);
+}
+}
+?> 
             </div>
             </div>
             </div>
@@ -111,7 +136,7 @@ $name=$row['bookname'];
             </div>
 <?php include('header.php'); ?>
             <div class="container">   
-            <div class="card text-center text-light alert bg-dark">
+            <div class="card text-left text-light alert bg-dark">
 <?php
 include_once("db_connect.php");
 $ratingDetails = "SELECT ratingNumber FROM item_rating WHERE itemId='$name'";
@@ -269,7 +294,7 @@ $reviewDate = date_format($date,"M d, Y");
             <div class="row">
             <div class="col-sm-3">
 
-            <img src="../../profile/<?php echo $rating['user_img']; ?>" class="img-rounded" style="   width: 40px;
+            <img src="../../profile/<?php echo $rating['user_img']; ?>" class="img-rounded" style="width: 40px;
             height: 40px;
             display: inline-block;
             vertical-align: middle;">
@@ -307,7 +332,7 @@ $ratingClass = "btn-warning";
           <div class="col-sm-12">
           <form id="ratingForm" method="POST">          
           <div class="form-group">
-          <h4>Rate this product</h4>
+          <h4>Rate this book</h4>
           <button type="button" class="btn btn-warning btn-sm rateButton" aria-label="Left Align">
           <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
           </button>

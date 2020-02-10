@@ -95,14 +95,14 @@ while ($row=$post->fetch_assoc()):
 	             		    <div class="col-lg-4">              	        			             	<div class="card mt-4">
 	                            <div class="card-header pb-0">
 	                            <p class="float-left"><a href="profile.php?posta=<?php echo $row['post_author'];?>"><?php  echo $row['post_author'] ;?></a></p>
-							    <p class="text-right"><?php echo $row['post_date'];?></p>
+							    <p class="text-right text-secondary"><?php echo $row['post_date'];?></p>
 	                            </div>
 							    <div class="image m-auto">
 							      <img src="../images/<?php echo $row['post_img'];?>" />
 							    </div>
 							    <div class="card-inner">
 								    <div class="header">
-								        <h5 class="text-center"><a class="text-dark" href="star/bookdatail.php?postar=<?php echo $row['bookname']; ?>"><?php echo $row['bookname'];?></a></h5>	
+								        <h5 class="text-center"><a class="text-dark" href="star/bookdatail.php?postar=<?php echo $row['post_id'];?>"><?php echo $row['bookname'];?></a></h5>	
 								        <p class="text-center text-secondary"><?php echo $row['authorname'];?></p>
 								    </div>
 								    	
