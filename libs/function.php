@@ -41,7 +41,7 @@ class BookShare{
         }
         public function userPost($post_content,$uimg,$post_author,$post_author_img,$post_time,$post_imgt,$post_author_dept,$post_author_ses,$post_author_roll,$post_author_cell,$book_name,$author_name,$publisher,$publish_year,$subject){
            $this->connection->query("INSERT INTO posts (post_author,post_author_img,post_date,post_content, post_img,post_author_dept,post_author_ses,post_author_roll,post_author_cell,bookname,authorname,publisher,publishyear,subject) VALUES('$post_author','$post_author_img','$post_time','$post_content','$uimg','$post_author_dept','$post_author_ses','$post_author_roll','$post_author_cell','$book_name','$author_name','$publisher','$publish_year','$subject')");
-           move_uploaded_file($post_imgt,'images/'.$uimg);
+           move_uploaded_file($post_imgt,'../images/'.$uimg);
               
         }
         public function recPost(){
@@ -88,8 +88,11 @@ class BookShare{
             return $rowd;
         }
         public function search($bname,$dept){
-           $data=$this->connection->query("SELECT * FROM posts WHERE post_content='$bname' OR post_author_dept='$dept' ");
+           $data=$this->connection->query("SELECT * FROM posts WHERE bookname='$bname' OR post_author_dept='$dept' ");
             return $data;
-        }      
+        }    
+        public function delete($post_id)  {
+          $data=$this->connection->query("DELETE  FROM posts WHERE post_id='$post_id' ");
+        }
 }
 ?>

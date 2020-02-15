@@ -171,7 +171,18 @@ while ($row=$post->fetch_assoc()):
                 <div class="col-md-12 mb-2">
 				<div class="card">
 				<div class="card-header text-center">
-				<p><?php echo $row['post_date'];?></p>	
+				<p class="d-inline"><?php echo $row['post_date'];?></p>	
+				
+<?php 
+if (isset($_POST['pid'])){
+$post_id=$_POST['pi'];
+$boi->delete($post_id);
+}
+?>              
+                <form action="profile.php?posta=<?php echo $post_pro;?>" method="POST">
+                <input type="hidden" name="pi" value="<?php echo $row['post_id']; ?>">
+				<button type="submit" class="pull-right" name="pid" onclick="return confirm('Are you sure?');"role="button" data-toggle="modal"><i class="fa fa-trash-o"></i></button>
+			    </form>
 				</div>
 				<div class="card-body m-auto">
 				<img src="../images/<?php echo $row['post_img'];?>" alt="">

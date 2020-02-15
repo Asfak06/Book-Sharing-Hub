@@ -86,11 +86,13 @@ if(empty($_SESSION['user_name']) AND empty($_SESSION['user_img'])){
 
 					<div class="col-md-8">
 					<div class="row">
-					<h3 class="h3 text-light pl-3 mb-0">Showing Shared books</h3> 
+					<h3 class="h3 text-light pl-3 mb-0">Search result</h3> 
 					</div>
 					<div class="row">
 <?php
-$post=$boi->recPost();
+$bname= $_POST['bname'];
+$dept= $_POST['dept'];
+$post=$boi->search($bname,$dept);
 while ($row=$post->fetch_assoc()):
 ?>
 					<div class="col-lg-4">              	        			             	<div class="card mt-4">
@@ -106,7 +108,6 @@ while ($row=$post->fetch_assoc()):
 					<h5 class="text-center"><a class="text-dark" href="star/bookdatail.php?postar=<?php echo $row['post_id'];?>"><?php echo $row['bookname'];?></a></h5>	
 					<p class="text-center text-secondary"><?php echo $row['authorname'];?></p>
 					</div>
-
 					</div>	
 					</div>
 					</div>	
