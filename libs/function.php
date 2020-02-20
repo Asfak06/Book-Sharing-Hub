@@ -35,12 +35,12 @@ class BookShare{
           }
              header("location:pages/homepage.php");
          }else{
-          return "<h1 style='color:red;text-align:center;'>wrong</h1>";
+          return "<h1 style='color:red;text-align:center;'>wrong input</h1>";
          }
 
         }
-        public function userPost($post_content,$uimg,$post_author,$post_author_img,$post_time,$post_imgt,$post_author_dept,$post_author_ses,$post_author_roll,$post_author_cell,$book_name,$author_name,$publisher,$publish_year,$subject){
-           $this->connection->query("INSERT INTO posts (post_author,post_author_img,post_date,post_content, post_img,post_author_dept,post_author_ses,post_author_roll,post_author_cell,bookname,authorname,publisher,publishyear,subject) VALUES('$post_author','$post_author_img','$post_time','$post_content','$uimg','$post_author_dept','$post_author_ses','$post_author_roll','$post_author_cell','$book_name','$author_name','$publisher','$publish_year','$subject')");
+        public function userPost($post_content,$uimg,$post_author,$post_author_img,$post_time,$post_imgt,$post_author_dept,$post_author_ses,$post_author_roll,$post_author_cell,$book_name,$author_name,$publisher,$publish_year,$subject,$category){
+           $this->connection->query("INSERT INTO posts (post_author,post_author_img,post_date,post_content, post_img,post_author_dept,post_author_ses,post_author_roll,post_author_cell,bookname,authorname,publisher,publishyear,subject,category) VALUES('$post_author','$post_author_img','$post_time','$post_content','$uimg','$post_author_dept','$post_author_ses','$post_author_roll','$post_author_cell','$book_name','$author_name','$publisher','$publish_year','$subject','$category')");
            move_uploaded_file($post_imgt,'../images/'.$uimg);
               
         }
@@ -87,8 +87,8 @@ class BookShare{
             $rowd=$data->num_rows;
             return $rowd;
         }
-        public function search($bname,$dept){
-           $data=$this->connection->query("SELECT * FROM posts WHERE bookname='$bname' OR post_author_dept='$dept' ");
+        public function search($bname,$dept,$cat){
+           $data=$this->connection->query("SELECT * FROM posts WHERE bookname='$bname' OR post_author_dept='$dept' OR category='$cat' ");
             return $data;
         }    
         public function delete($post_id)  {

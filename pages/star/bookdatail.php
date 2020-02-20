@@ -105,15 +105,28 @@ $bal=$boi->showBooked($book_show);
 if ($bal==0) {
 include "../button.php";
 $non='pub';
-if (isset($_POST[$non])){
-$comment="booked this.";
-$comment_author=$_SESSION['user_name'];
-$comment_author_img=$_SESSION['user_img'];
-$post_id=$_POST['npo'];
-$boi->newBook($comment_author,$comment_author_img,$comment,$post_id);
-}
 }
 ?> 
+<script>    
+$('#bookform').click(function (argument) {
+      $('#bookform').hide();
+      alert('booked');
+    });   
+$(function() {
+    $('#bookform').on('submit', function(event){
+    event.preventDefault();
+    var formData = $(this).serialize();
+    $.ajax({
+      type : 'POST',
+      url : 'saveBook.php',
+      data : formData,
+      success:function(response){
+
+      }
+    });   
+  });
+});
+</script>
             </div>
             </div>
             </div>

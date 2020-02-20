@@ -171,7 +171,7 @@ while ($row=$post->fetch_assoc()):
                 <div class="col-md-12 mb-2">
 				<div class="card">
 				<div class="card-header text-center">
-				<p class="d-inline"><?php echo $row['post_date'];?></p>	
+				<p class="float-left"><?php echo $row['post_date'];?></p>	
 				
 <?php 
 if (isset($_POST['pid'])){
@@ -181,7 +181,13 @@ $boi->delete($post_id);
 ?>              
                 <form action="profile.php?posta=<?php echo $post_pro;?>" method="POST">
                 <input type="hidden" name="pi" value="<?php echo $row['post_id']; ?>">
-				<button type="submit" class="pull-right" name="pid" onclick="return confirm('Are you sure?');"role="button" data-toggle="modal"><i class="fa fa-trash-o"></i></button>
+                <?php 
+	             		$name=$_SESSION['user_name'];
+                           if ($post_pro==$name) {
+                                echo '<button type="submit" class="pull-right" name="pid" onclick="return confirm("Are you sure?);"role="button" data-toggle="modal"><i class="fa fa-trash-o"></i></button>';
+                           }
+	             		?>
+				
 			    </form>
 				</div>
 				<div class="card-body m-auto">
@@ -214,39 +220,7 @@ if ($bal==0) {
 echo '<p style="width:600px; height:25px; margin-bottom:0px;" class="alert-secondary text-center">No one booked this book yet</p>' ;
 }
 ?>                                                
-                   <div class="post-comments">
-<?php
-$post_show=$row['post_id'];
-$sh=$boi->showComment($post_show);
-while($aa=$sh->fetch_assoc()):
-?>                    
-                    <div class="card h-25">
-					<div class="book bg-light">					
-					<img id="im" src="../profile/<?php echo $aa['comment_author_img']; ?>" alt="">
-					<a href="#" class="text-primary"><?php echo $aa['comment_author']; ?></a>
-					<span ><?php echo $aa['comment_content']; ?></span>
-					</div>
-					</div>
-<?php endwhile;?>
-<?php
-$non='comm'.$i;
-if (isset($_POST[$non])){
-$comment=$_POST[$non];
-$comment_author=$_SESSION['user_name'];
-$comment_author_img=$_SESSION['user_img'];
-$post_id=$row['post_id'];
-$boi->newComment($comment_author,$comment_author_img,$comment,$post_id);
-}
-?>                
-					<div class="card h-25">
-					<div class="book bg-light">
-					<img id="im" class="float-left mr-5" src="../profile/<?php echo $_SESSION['user_img']; ?>" alt="">
-					<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
-					<input class="form-control w-75 mt-2" placeholder="Add a comment" name="comm<?php  echo $i;$i++;?>" type="text">
-					</form>
-					</div>						
-					</div>
-					</div>
+<?php include "comment.php"; ?>
 					</div> 	
 <?php endwhile; ?>							
 					</div> 

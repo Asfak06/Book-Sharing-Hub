@@ -58,13 +58,13 @@ if(empty($_SESSION['user_name']) AND empty($_SESSION['user_img'])){
 					<label for="">Category</label>
 					<select name="cat" id="" class="form-control">
 					<option value="">Select</option>
-					<option value="ICT">Non Fiction</option>
-					<option value="CSE">Fiction</option>
-					<option value="MATH">Sci-fi</option>
-					<option value="PHYSICS">Poetry</option>
-					<option value="Farmacy">Academic</option>
-					<option value="MCJ">Novel</option>                  
-					<option value="LAW">Biography</option> 
+					<option value="Non Fiction">Non Fiction</option>
+					<option value="Fiction">Fiction</option>
+					<option value="Sci-fi">Sci-fi</option>
+					<option value="Poetry">Poetry</option>
+					<option value="Academic">Academic</option>
+					<option value="Novel">Novel</option>                  
+					<option value="Biography">Biography</option> 
 					</select>
 					<label for="">department</label>
 					<select name="dept" id="" class="form-control">
@@ -79,7 +79,7 @@ if(empty($_SESSION['user_name']) AND empty($_SESSION['user_img'])){
 					</select>
 					</div>
 					<div class="form-group ">
-					<input type="submit" name="sub" value="Search Data" class="btn btn-block alert-primary w-50" >
+					<input type="submit" name="sub" value="Search" class="btn btn-block alert-primary w-50" >
 					</div>
 					</form>                   			
 					</div>

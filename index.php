@@ -20,7 +20,7 @@ if( !empty($_SESSION['user_name']) AND !empty($_SESSION['user_img']) ){
         $uname=$_POST['uname'];
         $upass=$_POST['upass'];               
         if(empty($uname)||empty($upass)){
-                      $massage=" <h1 style='color:red;text-align:center;'>email or password must not be empty</h1>";
+                      $massage="<h3 style='color:red;text-align:center;'>email or password must not be empty</h3>";
                       }else{
                       $massage= $boi->userLogin($uname,$upass);
                       }
@@ -31,6 +31,11 @@ if( !empty($_SESSION['user_name']) AND !empty($_SESSION['user_img']) ){
 		<h1 id="title" >Unversity <br> Book Sharing Hub</h1>
 		<img src="handbook.png" alt="" id="img1">
 	</div>
+   <?php
+      if(isset($massage)){
+        echo $massage;
+      }
+    ?>
    <div class="row">
    <div class="login col-sm-12 col-md-6 mt-5" >
             <h1>log in</h1>
@@ -76,11 +81,7 @@ if( !empty($_SESSION['user_name']) AND !empty($_SESSION['user_img']) ){
                           }        
 
     ?>
-    <?php
-      if(isset($massage)){
-        echo $massage;
-      }
-    ?>
+   
    <div class="reg col-sm-12 col-md-6 mt-5 ">
       <h1 style="">Ragistration</h1>
          <hr>

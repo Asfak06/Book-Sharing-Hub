@@ -137,6 +137,14 @@ if(empty($_SESSION['user_name']) AND empty($_SESSION['user_img'])){
 			padding: 5px 10px;
 			height: 40px;
 	    }
+	    .post-input select{
+            border:none;
+            width: 100%; 
+			padding: 5px 10px;
+			padding-left:5px;
+			height: 40px;	
+			color:gray;	
+	    }
     </style>
 </head>
 <body>
@@ -159,6 +167,7 @@ $author_name=$_POST['authorname'];
 $publisher=$_POST['publisher'];
 $publish_year=$_POST['publishyear'];
 $subject=$_POST['subject'];
+$category=$_POST['cat'];
 $post_img=$_FILES['postimg']['name'];
 $post_imgt=$_FILES['postimg']['tmp_name'];
 $eximg = explode('.', $post_img);
@@ -176,7 +185,7 @@ echo" <script> alert('psot content most not be empty') </script> ";
 }else if(in_array($endeximg,['jpg','png','gif','jpeg'])==false){
 echo" <script> alert('invalid image format') </script> ";	
 }else{
-$boi->userPost($post_content,$uimg,$post_author,$post_author_img,$post_time,$post_imgt,$post_author_dept,$post_author_ses,$post_author_roll,$post_author_cell,$book_name,$author_name,$publisher,$publish_year,$subject);
+$boi->userPost($post_content,$uimg,$post_author,$post_author_img,$post_time,$post_imgt,$post_author_dept,$post_author_ses,$post_author_roll,$post_author_cell,$book_name,$author_name,$publisher,$publish_year,$subject,$category);
     echo" <script> alert('Shared') </script> ";	
 
 }
@@ -192,6 +201,16 @@ $boi->userPost($post_content,$uimg,$post_author,$post_author_img,$post_time,$pos
 					<input type="text" name="publisher" placeholder="publisher">
 					<input type="text" name="publishyear" placeholder="publishing year">     
 					<input type="text" name="subject" placeholder="subject">
+					<select name="cat" id="" class="form-control">
+					<option value="">Select Category</option>
+					<option value="Non Fiction">Non Fiction</option>
+					<option value="Fiction">Fiction</option>
+					<option value="Sci-fi">Sci-fi</option>
+					<option value="Poetry">Poetry</option>
+					<option value="Academic">Academic</option>
+					<option value="Novel">Novel</option>                  
+					<option value="Biography">Biography</option> 
+					</select>
 					<textarea name="post-content" placeholder="book details"></textarea>
 					</div>		 
 					</div>
