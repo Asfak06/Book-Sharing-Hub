@@ -155,7 +155,7 @@ $row=$post->fetch_assoc();
 	             		<?php 
 	             		$name=$_SESSION['user_name'];
                            if ($post_pro==$name) {
-                                echo "<p class='pl-3 mb-0 mt-5 col-12'><a class='text-light' href='add.php'>Add a  book</a><p>";
+                                echo "<p class='pl-3 mb-0  mt-5 col-12'><a class='text-light border border-danger p-1 rounded' href='add.php'>Add a  book</a><p>";
                            }
 	             		?>
 	             		<h3 class="h3 text-light pl-3 mb-0 col-12">Showing <?php echo $row['post_author'];?>'s Shared books</h3> 
